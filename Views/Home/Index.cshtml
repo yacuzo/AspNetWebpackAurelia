@@ -2,7 +2,7 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div aurelia-app="main">
+<div aurelia-app="main" class="center-app">
     <div class="splash">
         <div class="message">@ViewData["Title"]</div>
         <i class="fa fa-spinner fa-spin"></i>
@@ -12,5 +12,7 @@
      asp-prerender-webpack-config="webpack.config.js">Loading...</app>-->
      
 @section scripts {
-    <script src="~/dist/main.js" asp-append-version="true"></script>
+    <script src="~/dist/aurelia-bootstrap.js" asp-append-version="true"></script>
+    <script src="~/dist/aurelia.js" asp-append-version="true"></script>
+    <script src="~/dist/app.js" asp-append-version="true"></script>
 }

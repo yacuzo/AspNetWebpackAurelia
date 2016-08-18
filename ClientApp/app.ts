@@ -1,3 +1,4 @@
+import {Aurelia} from 'aurelia-framework';
 import './app.scss';
 
 export class App {
