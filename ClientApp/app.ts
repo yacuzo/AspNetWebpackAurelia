@@ -1,10 +1,10 @@
-import "./app.scss";
+import './app.scss';
 
 export class App {
     test() {
-        console.log("fn test 2");
-        let el = document.createElement("div");
-        el.classList.add("main-nav");
+        console.log('fn test 2');
+        let el = document.createElement('div');
+        el.classList.add('main-nav');
         document.body.appendChild(el);
     }
 }
