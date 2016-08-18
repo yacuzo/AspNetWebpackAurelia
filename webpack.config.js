@@ -21,7 +21,8 @@ const baseConfig = {
             }
         ]
     },
-    resolve: { extensions: ['', '.scss'] }
+    resolve: { extensions: ['', '.js', '.scss'] },
+    plugins: []
 }
 
 const devConfig = {
