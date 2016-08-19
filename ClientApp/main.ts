@@ -21,9 +21,9 @@ export async function configure(aurelia: Aurelia) {
   // Anyone wanting to use HTMLImports to load views, will need to install the following plugin.
   // aurelia.use.plugin('aurelia-html-import-template-loader')
 
-  // await aurelia.start();
-  // aurelia.setRoot('app');
-  aurelia.start().then(aurelia => aurelia.setRoot('app'));
+  await aurelia.start();
+  aurelia.setRoot('app');
+  // aurelia.start().then(aurelia => aurelia.setRoot('app'));
 
   // if you would like your website to work offline (Service Worker), 
   // install and enable the @easy-webpack/config-offline package in webpack.config.js and uncomment the following code:

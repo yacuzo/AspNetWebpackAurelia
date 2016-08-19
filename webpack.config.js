@@ -42,6 +42,7 @@ const coreBundles = {
 
 const baseConfig = {
     entry: {
+        'main': [/* AspNetCore.SpaServices uses this for webpack-dev scripts */],
         'app': [/* this is filled by the aurelia-webpack-plugin */],
         'aurelia-bootstrap': coreBundles.bootstrap,
         'aurelia': coreBundles.aurelia.filter(pkg => coreBundles.bootstrap.indexOf(pkg) === -1)
@@ -49,7 +50,7 @@ const baseConfig = {
     output: {
         // ... and emit the built result in this location
         path: path.resolve('./wwwroot/dist'),
-        publicPath: '/dist',
+        publicPath: '/dist/',
         filename: '[name].js'
     },
     module: {
@@ -75,7 +76,7 @@ const devConfig = {
 
 var completeConfig = generateConfig(
     baseConfig,
-    require('@easy-webpack/config-aurelia')({ src: path.resolve('./ClientApp') }),
+    require('@easy-webpack/config-aurelia')({ src: path.resolve('ClientApp') }),
     require('@easy-webpack/config-typescript')(),
     require('@easy-webpack/config-tslint')(),
     require('@easy-webpack/config-html')(),
