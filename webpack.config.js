@@ -67,6 +67,7 @@ const baseConfig = {
     },
     resolve: { extensions: ['', '.js', '.css', '.scss'] },
     plugins: [
+        new AureliaWebpackPlugin({src: path.resolve('./ClientApp')})
     ]
 }
 
@@ -76,7 +77,6 @@ const devConfig = {
 
 var completeConfig = generateConfig(
     baseConfig,
-    require('@easy-webpack/config-aurelia')({ src: path.resolve('ClientApp') }),
     require('@easy-webpack/config-typescript')(),
     require('@easy-webpack/config-tslint')(),
     require('@easy-webpack/config-html')(),

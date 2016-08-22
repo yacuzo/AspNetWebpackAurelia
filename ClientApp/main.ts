@@ -32,3 +32,11 @@ export async function configure(aurelia: Aurelia) {
   offline.install();
   */
 }
+
+// Basic hot reloading support. Automatically reloads and restarts the Aurelia app each time
+// you modify source files. This will not preserve any application state other than the URL.
+declare var module: any;
+if (module.hot) {
+    module.hot.accept();
+    module.hot.dispose(() => window.location.reload());
+}
