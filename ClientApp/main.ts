@@ -1,36 +1,36 @@
 import {Aurelia} from 'aurelia-framework';
+import {AppRouter} from 'aurelia-router';
 // we want font-awesome to load as soon as possible to show the fa-spinner
-import './site.scss';
+import './site.css';
 import 'font-awesome/css/font-awesome.css';
 // import 'bootstrap/dist/css/bootstrap.css';
 // import 'bootstrap';
 
 // comment out if you don't want a Promise polyfill (remove also from webpack.config.js)
-// import * as Bluebird from 'bluebird';
-// Bluebird.config({ warnings: false });
+import * as Bluebird from 'bluebird';
+Bluebird.config({ warnings: false });
 
 export async function configure(aurelia: Aurelia) {
-  aurelia.use
-    .standardConfiguration()
-    .developmentLogging();
+    aurelia.use
+        .standardConfiguration()
+        .developmentLogging();
 
-  // Uncomment the line below to enable animation.
-  // aurelia.use.plugin('aurelia-animator-css');
-  // if the css animator is enabled, add swap-order="after" to all router-view elements
+    // Uncomment the line below to enable animation.
+    // aurelia.use.plugin('aurelia-animator-css');
+    // if the css animator is enabled, add swap-order="after" to all router-view elements
 
-  // Anyone wanting to use HTMLImports to load views, will need to install the following plugin.
-  // aurelia.use.plugin('aurelia-html-import-template-loader')
+    // Anyone wanting to use HTMLImports to load views, will need to install the following plugin.
+    // aurelia.use.plugin('aurelia-html-import-template-loader')
 
-  await aurelia.start();
-  aurelia.setRoot('app');
-  // aurelia.start().then(aurelia => aurelia.setRoot('app'));
+    await aurelia.start();
+    aurelia.setRoot('app');
 
-  // if you would like your website to work offline (Service Worker), 
-  // install and enable the @easy-webpack/config-offline package in webpack.config.js and uncomment the following code:
-  /*
-  const offline = await System.import('offline-plugin/runtime');
-  offline.install();
-  */
+    // if you would like your website to work offline (Service Worker), 
+    // install and enable the @easy-webpack/config-offline package in webpack.config.js and uncomment the following code:
+    /*
+    const offline = await System.import('offline-plugin/runtime');
+    offline.install();
+    */
 }
 
 // Basic hot reloading support. Automatically reloads and restarts the Aurelia app each time
@@ -38,5 +38,17 @@ export async function configure(aurelia: Aurelia) {
 declare var module: any;
 if (module.hot) {
     module.hot.accept();
-    module.hot.dispose(() => window.location.reload());
+    module.hot.dispose(() => {
+        console.log('WARNING: Reloading script modules is not yet supported!');
+        // Need some way of restarting the app, or inject the new module
+        // Maybe Container.register() to overwrite the current module
+
+        // let aurelia_root = document.querySelector('[aurelia-app]');
+        // if (!aurelia_root) throw new Error('Aurelia root not found!');
+        // let router: AppRouter = (<any>aurelia_root).aurelia.container.get(AppRouter);
+
+        // let currentOptions: any = router.currentInstruction.options;
+        // currentOptions.replace = true;
+        // router.navigate(router.currentInstruction.fragment, router.currentInstruction.options); //Does not reload current site.
+    });
 }

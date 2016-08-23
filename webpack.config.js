@@ -3,6 +3,22 @@ const generateConfig = easyWebpack.default;
 const path = require('path');
 const AureliaWebpackPlugin = require('aurelia-webpack-plugin');
 
+class AureliaHotModulePlugin {
+    apply(compiler) {
+        compiler.plugin('compilation', function (compilation) {
+            // Re-add HMR functionality, aurelia plugin removes it.
+            compilation.mainTemplate.plugin('require', function(source) {
+                return source.replace(`exports: {}`, this.asString([
+                    "exports: {},",
+                    "hot: hotCreateModule(moduleId),",
+                    "parents: (hotCurrentParentsTemp = hotCurrentParents, hotCurrentParents = [], hotCurrentParentsTemp),",
+                    "children: []"
+                ]));
+            });
+        });
+    }
+}
+
 const coreBundles = {
     bootstrap: [
         'aurelia-bootstrapper-webpack',
@@ -67,7 +83,8 @@ const baseConfig = {
     },
     resolve: { extensions: ['', '.js', '.css', '.scss'] },
     plugins: [
-        new AureliaWebpackPlugin({src: path.resolve('./ClientApp')})
+        new AureliaWebpackPlugin({src: path.resolve('./ClientApp')}),
+        new AureliaHotModulePlugin()
     ]
 }
 
@@ -83,7 +100,7 @@ var completeConfig = generateConfig(
      require('@easy-webpack/config-fonts-and-images')(),
     require('@easy-webpack/config-global-regenerator')(),
     require('@easy-webpack/config-common-chunks-simple')
-        ({appChunkName: 'app', firstChunk: 'aurelia-bootstrap'}),
+        ({appChunkName: 'app', firstChunk: 'manifest'}),
 
     devConfig
 );

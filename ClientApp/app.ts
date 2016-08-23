@@ -1,9 +1,13 @@
 import {Aurelia} from 'aurelia-framework';
-import {Router, RouterConfiguration} from 'aurelia-router';
-import './app.scss';
+import {Router, RouterConfiguration, activationStrategy} from 'aurelia-router';
+import './appcss.css';
 
 export class App {
     router: Router;
+
+    determineActivationStrategy() {
+        return activationStrategy.invokeLifecycle;
+    }
 
     configureRouter(config: RouterConfiguration, router: Router) {
         config.title = 'Aurelia';

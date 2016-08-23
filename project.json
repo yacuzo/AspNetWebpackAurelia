@@ -4,7 +4,7 @@
       "version": "1.0.0",
       "type": "platform"
     },
-    "Microsoft.AspNetCore.SpaServices": "1.0.0-beta-000010",
+    "Microsoft.AspNetCore.SpaServices": "1.0.0-beta-000011",
     "Microsoft.AspNetCore.Diagnostics": "1.0.0",
     "Microsoft.AspNetCore.Mvc": "1.0.0",
     "Microsoft.AspNetCore.Razor.Tools": {
